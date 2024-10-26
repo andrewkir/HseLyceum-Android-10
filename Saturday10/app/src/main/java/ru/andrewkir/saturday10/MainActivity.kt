@@ -1,7 +1,7 @@
 package ru.andrewkir.saturday10
 
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -11,105 +11,80 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import ru.andrewkir.saturday10.components.EnterUsername
 import ru.andrewkir.saturday10.components.GoodsCard
+import ru.andrewkir.saturday10.components.LoginScreen
+import ru.andrewkir.saturday10.data.SharedPrefsRepository
 import ru.andrewkir.saturday10.models.GoodsItemModel
 import ru.andrewkir.saturday10.ui.theme.Saturday10Theme
 
 class MainActivity : ComponentActivity() {
+
+  private lateinit var sharedPrefsRepository: SharedPrefsRepository
+
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    Log.d("MYTAG", "onCreate")
+    sharedPrefsRepository = SharedPrefsRepository(baseContext)
 
     enableEdgeToEdge()
     setContent {
       Saturday10Theme {
         Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
           Column(modifier = Modifier.padding(innerPadding)) {
-            EnterNameWithGoods()
-//            EnterUsername()
-//            GoodsExampleContent()
+            LoginScreen(Modifier) { username, password ->
+              if(username == "test" && password == "test1") {
+                val intent = Intent(baseContext, ProfileActivity::class.java)
+                intent.putExtra("name", username)
+                startActivity(intent)
+
+                // Во второй активити для получения переменной:
+                // val name = intent.extras?.getString("name")
+              }
+            }
           }
         }
       }
     }
   }
 
-  override fun onDestroy() {
-    Log.d("MYTAG", "destroy")
-    super.onDestroy()
-  }
-}
-
-@Composable
-fun EnterNameWithGoods() {
-  val items = remember { mutableStateListOf<GoodsItemModel>() }
-  EnterUsername(onButtonClick = { name ->
-    items.add(
+  @Composable
+  fun GoodsExampleContent() {
+    val cards = listOf(
       GoodsItemModel(
-        name = name,
-        stars = 0,
-        price = 0,
+        name = "Ershik",
+        stars = 3,
+        price = 12345,
         imageId = R.drawable.ershik
-      )
+      ),
+
+      GoodsItemModel(
+        name = "Unitaz",
+        stars = 5,
+        price = 100000,
+        imageId = R.drawable.toilet
+      ),
     )
-  })
 
-  LazyColumn {
-    items.forEach { item ->
-      item {
-        GoodsCard(
-          Modifier.padding(12.dp),
-          item
-        )
+    LazyColumn {
+      cards.forEach { item ->
+        item {
+          GoodsCard(
+            Modifier.padding(12.dp),
+            item
+          )
+        }
       }
     }
   }
-}
 
-@Composable
-fun GoodsExampleContent() {
-  val cards = listOf(
-    GoodsItemModel(
-      name = "Ershik",
-      stars = 3,
-      price = 12345,
-      imageId = R.drawable.ershik
-    ),
-
-    GoodsItemModel(
-      name = "Unitaz",
-      stars = 5,
-      price = 100000,
-      imageId = R.drawable.toilet
-    ),
-  )
-
-  LazyColumn {
-    cards.forEach { item ->
-      item {
-        GoodsCard(
-          Modifier.padding(12.dp),
-          item
-        )
-      }
+  @Preview(showBackground = true)
+  @Composable
+  fun GreetingPreview() {
+    Saturday10Theme {
+      LoginScreen(Modifier) { _, _ -> }
     }
-  }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-  Saturday10Theme {
-    GoodsExampleContent()
   }
 }
