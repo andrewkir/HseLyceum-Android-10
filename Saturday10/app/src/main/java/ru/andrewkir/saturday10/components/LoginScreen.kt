@@ -61,7 +61,7 @@ fun LoginScreen(
 }
 
 @Composable
-@Preview
+@Preview(showBackground = true)
 private fun LoginScreenPreview() {
   LoginScreen(Modifier) { _, _ -> }
 }
