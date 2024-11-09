@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -31,15 +32,17 @@ fun GoodsScreenContent(
         onValueChange = { changedValue -> onEvent(GoodsEvent.UpdateGoodsTextField(changedValue)) },
         label = { Text("Enter") })
 
-//      Button(onClick = {
-//        onButtonClick(name)
-//      }) {
-//        Text(text = "Добавить")
-//      }
+      Button(
+        modifier = Modifier.padding(start = 14.dp),
+        onClick = {
+          onEvent(GoodsEvent.AddButtonClicked)
+        }) {
+        Text(text = "Add")
+      }
     }
 
     LazyColumn {
-      uiState.goods?.forEach { item ->
+      uiState.goods.forEach { item ->
         item {
           GoodsCard(
             Modifier.padding(12.dp),

@@ -4,5 +4,5 @@ import ru.andrewkir.saturday10.data.models.GoodsItemModel
 
 data class GoodsState(
   val goodsName: String = "",
-  val goods: List<GoodsItemModel>? = null
+  val goods: List<GoodsItemModel> = emptyList()
 )
