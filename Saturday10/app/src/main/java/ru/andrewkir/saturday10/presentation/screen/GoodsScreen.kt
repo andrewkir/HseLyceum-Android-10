@@ -1,11 +1,11 @@
-package ru.andrewkir.saturday10.screen
+package ru.andrewkir.saturday10.presentation.screen
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.viewmodel.compose.viewModel
-import ru.andrewkir.saturday10.components.GoodsScreenContent
-import ru.andrewkir.saturday10.viewmodels.GoodsViewModel
+import ru.andrewkir.saturday10.presentation.components.GoodsScreenContent
+import ru.andrewkir.saturday10.presentation.viewmodels.GoodsViewModel
 
 @Composable
 fun GoodsScreen() {
@@ -15,6 +15,7 @@ fun GoodsScreen() {
   val state by viewModel.state.collectAsState()
 
   GoodsScreenContent(
-    state
+    uiState = state,
+    onEvent = viewModel::handleEvent
   )
 }

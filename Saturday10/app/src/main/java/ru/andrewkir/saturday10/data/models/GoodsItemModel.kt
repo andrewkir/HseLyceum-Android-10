@@ -1,4 +1,4 @@
-package ru.andrewkir.saturday10.models
+package ru.andrewkir.saturday10.data.models
 
 import androidx.annotation.DrawableRes
 

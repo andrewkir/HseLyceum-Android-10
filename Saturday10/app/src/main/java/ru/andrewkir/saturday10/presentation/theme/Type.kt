@@ -1,4 +1,4 @@
-package ru.andrewkir.saturday10.ui.theme
+package ru.andrewkir.saturday10.presentation.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

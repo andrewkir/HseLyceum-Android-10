@@ -12,8 +12,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import ru.andrewkir.saturday10.data.SharedPrefsRepository
-import ru.andrewkir.saturday10.screen.GoodsScreen
-import ru.andrewkir.saturday10.ui.theme.Saturday10Theme
+import ru.andrewkir.saturday10.presentation.screen.GoodsScreen
+import ru.andrewkir.saturday10.presentation.theme.Saturday10Theme
 
 class MainActivity : ComponentActivity() {
 
