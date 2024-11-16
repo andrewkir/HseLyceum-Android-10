@@ -8,4 +8,5 @@ data class GoodsItemModel(
   val price: Int,
   @DrawableRes
   val imageId: Int,
+  val imageURL: String,
 )

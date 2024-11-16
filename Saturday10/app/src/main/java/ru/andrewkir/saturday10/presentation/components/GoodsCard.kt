@@ -1,11 +1,13 @@
 package ru.andrewkir.saturday10.presentation.components
 
 import android.util.Log
-import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Button
@@ -16,14 +18,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
+import com.bumptech.glide.integration.compose.GlideImage
 import ru.andrewkir.saturday10.R
 import ru.andrewkir.saturday10.data.models.GoodsItemModel
 
+@OptIn(ExperimentalLayoutApi::class, ExperimentalGlideComposeApi::class)
 @Composable
 fun GoodsCard(
   modifier: Modifier,
@@ -32,11 +35,10 @@ fun GoodsCard(
   ElevatedCard(
     modifier = modifier.fillMaxWidth()
   ) {
-    Image(
-      modifier = Modifier.fillMaxWidth(),
-      painter = painterResource(item.imageId),
-      contentScale = ContentScale.Crop,
-      contentDescription = null
+
+    GlideImage(
+      model = item.imageURL,
+      contentDescription = null,
     )
 
     Row(
@@ -50,16 +52,18 @@ fun GoodsCard(
         fontSize = 24.sp
       )
       Spacer(modifier = Modifier.weight(1f))
-      for (i in 1..5) {
-        Icon(
-          imageVector = Icons.Filled.Star,
-          contentDescription = null,
-          tint = if (i <= item.stars) {
-            Color.Yellow
-          } else {
-            Color.Black
-          }
-        )
+      FlowRow(modifier = Modifier.width(120.dp)) {
+        for (i in 1..10) {
+          Icon(
+            imageVector = Icons.Filled.Star,
+            contentDescription = null,
+            tint = if (i <= item.stars) {
+              Color.Yellow
+            } else {
+              Color.Black
+            }
+          )
+        }
       }
       Spacer(modifier = Modifier.padding(6.dp))
     }
@@ -95,6 +99,7 @@ private fun GoodsCardPreview() {
       stars = 3,
       imageId = R.drawable.ershik,
       price = 10000,
+      imageURL = "https://i.ytimg.com/vi/fEutmfmgN6M/maxresdefault.jpg",
     )
   )
 }
