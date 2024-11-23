@@ -60,6 +60,10 @@ dependencies {
   implementation(libs.androidx.lifecycle.viewmodel.compose)
   implementation(libs.glide)
   implementation(libs.compose)
+  implementation(libs.retrofit)
+  implementation(libs.gson)
+  implementation(libs.converter.gson)
+  implementation(libs.logging.interceptor)
 
   testImplementation(libs.junit)
   androidTestImplementation(libs.androidx.junit)
