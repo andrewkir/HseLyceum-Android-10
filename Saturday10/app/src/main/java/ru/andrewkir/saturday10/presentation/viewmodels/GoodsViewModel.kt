@@ -8,15 +8,13 @@ import okhttp3.OkHttpClient.Builder
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import ru.andrewkir.saturday10.R
 import ru.andrewkir.saturday10.data.api.ApiExample
-import ru.andrewkir.saturday10.data.models.GoodsItemModel
+import ru.andrewkir.saturday10.data.models.UserModel
 import ru.andrewkir.saturday10.presentation.contract.GoodsEvent
 import ru.andrewkir.saturday10.presentation.contract.GoodsEvent.AddButtonClicked
 import ru.andrewkir.saturday10.presentation.contract.GoodsEvent.UpdateGoodsTextField
 import ru.andrewkir.saturday10.presentation.contract.GoodsEvent.UpdateGoodsUrlField
 import ru.andrewkir.saturday10.presentation.contract.GoodsState
-import kotlin.random.Random
 
 
 class GoodsViewModel : ViewModel() {
@@ -51,17 +49,13 @@ class GoodsViewModel : ViewModel() {
             val users = client.getUsers()
             users.forEach {
               state.value = state.value.copy(
-                goods = state.value.goods + listOf(
-                  GoodsItemModel(
-                    name = it.login,
-                    price = Random.nextInt() % 5,
-                    stars = Random.nextInt() % 1000,
-                    imageId = R.drawable.ershik,
-                    imageURL = state.value.goodsUrl,
+                users = state.value.users + listOf(
+                  UserModel(
+                    login = it.login,
+                    id = it.id,
+                    imageUrl = it.imageUrl
                   )
-                ),
-                goodsName = "",
-                goodsUrl = "",
+                )
               )
             }
           } catch (e: Exception) {

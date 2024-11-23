@@ -41,12 +41,13 @@ fun GoodsScreenContent(
     }
 
     LazyColumn {
-      uiState.goods.forEach { item ->
+      uiState.users.forEach { item ->
         item {
-          GoodsCard(
-            Modifier.padding(12.dp),
-            item
-          )
+//          GoodsCard(
+//            Modifier.padding(12.dp),
+//            item
+//          )
+          UserCard(item)
         }
       }
     }
