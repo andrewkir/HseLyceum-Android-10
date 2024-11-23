@@ -23,31 +23,6 @@ class GoodsViewModel : ViewModel() {
 
   val state = MutableStateFlow(GoodsState())
 
-  init {
-    val client = getClient()
-    viewModelScope.launch {
-      try {
-        val users = client.getUsers()
-        users.forEach {
-          state.value = state.value.copy(
-            goods = state.value.goods + listOf(
-              GoodsItemModel(
-                name = it.login,
-                price = Random.nextInt() % 5,
-                stars = Random.nextInt() % 1000,
-                imageId = R.drawable.ershik,
-                imageURL = state.value.goodsUrl,
-              )
-            ),
-            goodsName = "",
-            goodsUrl = "",
-          )
-        }
-      } catch (e: Exception) {
-        e.printStackTrace()
-      }
-    }
-  }
 
   private fun getClient(): ApiExample {
     val httpClient = Builder()
@@ -70,19 +45,29 @@ class GoodsViewModel : ViewModel() {
       }
 
       AddButtonClicked -> {
-        state.value = state.value.copy(
-          goods = state.value.goods + listOf(
-            GoodsItemModel(
-              name = state.value.goodsName,
-              price = Random.nextInt() % 5,
-              stars = Random.nextInt() % 1000,
-              imageId = R.drawable.ershik,
-              imageURL = state.value.goodsUrl,
-            )
-          ),
-          goodsName = "",
-          goodsUrl = "",
-        )
+        val client = getClient()
+        viewModelScope.launch {
+          try {
+            val users = client.getUsers()
+            users.forEach {
+              state.value = state.value.copy(
+                goods = state.value.goods + listOf(
+                  GoodsItemModel(
+                    name = it.login,
+                    price = Random.nextInt() % 5,
+                    stars = Random.nextInt() % 1000,
+                    imageId = R.drawable.ershik,
+                    imageURL = state.value.goodsUrl,
+                  )
+                ),
+                goodsName = "",
+                goodsUrl = "",
+              )
+            }
+          } catch (e: Exception) {
+            e.printStackTrace()
+          }
+        }
       }
 
       is UpdateGoodsUrlField -> {
