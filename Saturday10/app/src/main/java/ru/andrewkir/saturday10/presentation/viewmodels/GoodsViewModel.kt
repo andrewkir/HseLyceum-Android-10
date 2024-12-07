@@ -1,5 +1,6 @@
 package ru.andrewkir.saturday10.presentation.viewmodels
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -8,8 +9,9 @@ import okhttp3.OkHttpClient.Builder
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import ru.andrewkir.saturday10.App
 import ru.andrewkir.saturday10.data.api.ApiExample
-import ru.andrewkir.saturday10.data.models.UserModel
+import ru.andrewkir.saturday10.data.db.User
 import ru.andrewkir.saturday10.presentation.contract.GoodsEvent
 import ru.andrewkir.saturday10.presentation.contract.GoodsEvent.AddButtonClicked
 import ru.andrewkir.saturday10.presentation.contract.GoodsEvent.UpdateGoodsTextField
@@ -45,22 +47,32 @@ class GoodsViewModel : ViewModel() {
       AddButtonClicked -> {
         val client = getClient()
         viewModelScope.launch {
-          try {
-            val users = client.getUsers()
-            users.forEach {
-              state.value = state.value.copy(
-                users = state.value.users + listOf(
-                  UserModel(
-                    login = it.login,
-                    id = it.id,
-                    imageUrl = it.imageUrl
-                  )
-                )
+          App.getDatabase()?.userDao()?.let { dao ->
+            dao.insert(
+              User(
+                id = "1",
+                login = "test"
               )
-            }
-          } catch (e: Exception) {
-            e.printStackTrace()
+            )
+            Log.d("MYTAG", dao.getAll().toString())
           }
+
+//          try {
+//            val users = client.getUsers()
+//            users.forEach {
+//              state.value = state.value.copy(
+//                users = state.value.users + listOf(
+//                  UserModel(
+//                    login = it.login,
+//                    id = it.id,
+//                    imageUrl = it.imageUrl
+//                  )
+//                )
+//              )
+//            }
+//          } catch (e: Exception) {
+//            e.printStackTrace()
+//          }
         }
       }
 
