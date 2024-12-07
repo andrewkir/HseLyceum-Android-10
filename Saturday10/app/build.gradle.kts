@@ -1,6 +1,7 @@
 plugins {
   alias(libs.plugins.android.application)
   alias(libs.plugins.kotlin.android)
+  alias(libs.plugins.kotlinAndroidKsp)
 }
 
 android {
@@ -64,6 +65,12 @@ dependencies {
   implementation(libs.gson)
   implementation(libs.converter.gson)
   implementation(libs.logging.interceptor)
+
+  implementation(libs.coreDestinations)
+  ksp(libs.composeDestinationsKSP)
+
+  implementation(libs.room)
+  ksp(libs.roomKsp)
 
   testImplementation(libs.junit)
   androidTestImplementation(libs.androidx.junit)
