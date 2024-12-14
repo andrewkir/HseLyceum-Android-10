@@ -18,7 +18,7 @@ abstract class UsersDatabase : RoomDatabase() {
 data class User(
   @PrimaryKey
   val id: String,
-  val login: String
+  val login: String,
 )
 
 @Dao
@@ -28,6 +28,9 @@ interface UserDao {
 
   @Insert
   fun insert(user: User)
+
+  @Insert
+  fun insertAll(users: List<User>)
 
   @Delete
   fun delete(user: User)

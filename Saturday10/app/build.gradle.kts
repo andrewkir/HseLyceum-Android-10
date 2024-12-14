@@ -69,6 +69,7 @@ dependencies {
   implementation(libs.coreDestinations)
   ksp(libs.composeDestinationsKSP)
 
+  implementation(libs.kotlinx.serialization.json)
   implementation(libs.room)
   ksp(libs.roomKsp)
 

@@ -45,34 +45,28 @@ class GoodsViewModel : ViewModel() {
       }
 
       AddButtonClicked -> {
+        App.getDatabase()?.clearAllTables()
         val client = getClient()
+
         viewModelScope.launch {
-          App.getDatabase()?.userDao()?.let { dao ->
-            dao.insert(
-              User(
-                id = "1",
-                login = "test"
-              )
-            )
-            Log.d("MYTAG", dao.getAll().toString())
+          try {
+            App.getDatabase()?.userDao()?.let { dao ->
+              val users = client.getUsers()
+              users.forEach { user ->
+                dao.insert(
+                  User(
+                    id = user.id,
+                    login = user.login
+                  )
+                )
+              }
+            }
+          } catch (e: Exception) {
+            e.printStackTrace()
           }
 
-//          try {
-//            val users = client.getUsers()
-//            users.forEach {
-//              state.value = state.value.copy(
-//                users = state.value.users + listOf(
-//                  UserModel(
-//                    login = it.login,
-//                    id = it.id,
-//                    imageUrl = it.imageUrl
-//                  )
-//                )
-//              )
-//            }
-//          } catch (e: Exception) {
-//            e.printStackTrace()
-//          }
+
+          Log.d("MYTAG", App.getDatabase()?.userDao()?.getAll().toString())
         }
       }
 
