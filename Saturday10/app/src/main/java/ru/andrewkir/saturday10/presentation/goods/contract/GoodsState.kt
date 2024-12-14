@@ -1,4 +1,4 @@
-package ru.andrewkir.saturday10.presentation.contract
+package ru.andrewkir.saturday10.presentation.goods.contract
 
 import ru.andrewkir.saturday10.data.models.GoodsItemModel
 import ru.andrewkir.saturday10.data.models.UserModel

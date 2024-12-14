@@ -1,4 +1,4 @@
-package ru.andrewkir.saturday10.presentation.components
+package ru.andrewkir.saturday10.presentation.goods.components
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -12,13 +12,19 @@ import androidx.compose.ui.unit.sp
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import ru.andrewkir.saturday10.data.models.UserModel
+import ru.andrewkir.saturday10.presentation.goods.contract.GoodsEvent
 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
 fun UserCard(
-  userModel: UserModel
+  userModel: UserModel,
+  onEvent: (GoodsEvent) -> Unit,
 ) {
-  ElevatedCard {
+  ElevatedCard(
+    onClick = {
+      onEvent(GoodsEvent.OnUserItemClick(userModel))
+    }
+  ) {
 
     GlideImage(
       model = userModel.imageUrl,
@@ -47,6 +53,6 @@ fun UserCard(
 @Preview
 private fun UserCardPreview() {
   UserCard(
-    UserModel("test", "1", "")
+    UserModel("test", "1", ""), {}
   )
 }

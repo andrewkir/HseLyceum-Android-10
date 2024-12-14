@@ -1,4 +1,4 @@
-package ru.andrewkir.saturday10.presentation.components
+package ru.andrewkir.saturday10.presentation.goods.components
 
 import android.util.Log
 import androidx.compose.foundation.layout.ExperimentalLayoutApi

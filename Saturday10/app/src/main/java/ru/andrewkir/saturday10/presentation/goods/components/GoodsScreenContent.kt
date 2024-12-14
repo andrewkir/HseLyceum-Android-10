@@ -1,4 +1,4 @@
-package ru.andrewkir.saturday10.presentation.components
+package ru.andrewkir.saturday10.presentation.goods.components
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -13,8 +13,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import ru.andrewkir.saturday10.R
 import ru.andrewkir.saturday10.data.models.GoodsItemModel
-import ru.andrewkir.saturday10.presentation.contract.GoodsEvent
-import ru.andrewkir.saturday10.presentation.contract.GoodsState
+import ru.andrewkir.saturday10.presentation.goods.contract.GoodsEvent
+import ru.andrewkir.saturday10.presentation.goods.contract.GoodsState
 
 @Composable
 fun GoodsScreenContent(
@@ -43,11 +43,7 @@ fun GoodsScreenContent(
     LazyColumn {
       uiState.users.forEach { item ->
         item {
-//          GoodsCard(
-//            Modifier.padding(12.dp),
-//            item
-//          )
-          UserCard(item)
+          UserCard(item, onEvent)
         }
       }
     }

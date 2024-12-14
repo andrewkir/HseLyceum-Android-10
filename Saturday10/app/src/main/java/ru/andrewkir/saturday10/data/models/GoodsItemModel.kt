@@ -7,6 +7,6 @@ data class GoodsItemModel(
   val stars: Int,
   val price: Int,
   @DrawableRes
-  val imageId: Int,
-  val imageURL: String,
+  val imageId: Int? = null,
+  val imageURL: String = "",
 )

@@ -1,4 +1,4 @@
-package ru.andrewkir.saturday10.presentation.theme
+package ru.andrewkir.saturday10.presentation.goods.theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
