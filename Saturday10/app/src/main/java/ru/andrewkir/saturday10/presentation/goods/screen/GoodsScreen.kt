@@ -32,7 +32,7 @@ fun GoodsScreen(
     viewModel.effect.collectLatest { effect ->
       when (effect) {
         is OpenDetails -> {
-          navigator.navigate(DetailsScreenContentDestination)
+          navigator.navigate(DetailsScreenContentDestination(name = effect.item.login))
         }
       }
     }

@@ -8,8 +8,10 @@ import com.ramcosta.composedestinations.annotation.Destination
 
 @Destination
 @Composable
-fun DetailsScreenContent() {
+fun DetailsScreenContent(
+  name: String,
+) {
   Column {
-    Text("Hello!", fontSize = 24.sp)
+    Text("Hello $name!", fontSize = 24.sp)
   }
 }

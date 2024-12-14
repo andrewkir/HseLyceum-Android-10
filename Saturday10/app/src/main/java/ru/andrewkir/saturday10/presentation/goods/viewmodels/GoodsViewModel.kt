@@ -51,7 +51,7 @@ class GoodsViewModel : ViewModel() {
 
       is OnUserItemClick -> {
         viewModelScope.launch {
-          _effect.send(GoodsEffect.OpenDetails)
+          _effect.send(GoodsEffect.OpenDetails(event.user))
         }
       }
 
