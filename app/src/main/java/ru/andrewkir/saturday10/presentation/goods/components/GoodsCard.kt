@@ -1,12 +1,17 @@
 package ru.andrewkir.saturday10.presentation.goods.components
 
 import android.util.Log
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Star
@@ -18,6 +23,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.layout.ContentScale.Companion
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -32,58 +40,26 @@ fun GoodsCard(
   modifier: Modifier,
   item: GoodsItemModel,
 ) {
-  ElevatedCard(
-    modifier = modifier.fillMaxWidth()
-  ) {
-
-    GlideImage(
-      model = item.imageURL,
-      contentDescription = null,
+  ElevatedCard {
+    Image(
+      modifier = Modifier.height(170.dp),
+      painter = painterResource(R.drawable.ershik),
+      contentScale = ContentScale.Crop,
+      contentDescription = null
     )
-
     Row(
-      modifier = Modifier.fillMaxWidth(),
-      verticalAlignment = Alignment.CenterVertically,
+      verticalAlignment = Alignment.CenterVertically
     ) {
       Text(
-        modifier = Modifier
-          .padding(start = 12.dp, top = 16.dp, bottom = 16.dp),
-        text = item.name,
-        fontSize = 24.sp
-      )
-      Spacer(modifier = Modifier.weight(1f))
-      FlowRow(modifier = Modifier.width(120.dp)) {
-        for (i in 1..10) {
-          Icon(
-            imageVector = Icons.Filled.Star,
-            contentDescription = null,
-            tint = if (i <= item.stars) {
-              Color.Yellow
-            } else {
-              Color.Black
-            }
-          )
-        }
-      }
-      Spacer(modifier = Modifier.padding(6.dp))
-    }
-
-    Row {
-      Text(
-        modifier = Modifier.padding(14.dp),
-        text = "Всего за ${item.price} $",
-        fontSize = 20.sp
+        modifier = modifier
+          .padding(16.dp),
+        text = item.name
       )
 
-      Spacer(modifier = Modifier.weight(1f))
-
-      Button(
-        modifier = Modifier.padding(end = 14.dp),
-        onClick = {
-          Log.d("MYTAG", "On button clicked")
+      Row {
+        for (i in 1..item.stars) {
+          Icon(imageVector = Icons.Filled.Star, contentDescription = null)
         }
-      ) {
-        Text(text = "Купить")
       }
     }
   }
@@ -96,7 +72,7 @@ private fun GoodsCardPreview() {
     Modifier,
     GoodsItemModel(
       name = "Ершик",
-      stars = 3,
+      stars = 5,
       imageId = R.drawable.ershik,
       price = 10000,
       imageURL = "https://i.ytimg.com/vi/fEutmfmgN6M/maxresdefault.jpg",
