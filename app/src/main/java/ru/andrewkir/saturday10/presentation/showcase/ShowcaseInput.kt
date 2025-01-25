@@ -18,6 +18,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import ru.andrewkir.saturday10.data.models.GoodsItemModel
+import ru.andrewkir.saturday10.presentation.goods.components.GoodsCard
 
 @Composable
 fun ShowcaseInput() {
@@ -44,13 +46,20 @@ fun ShowcaseInput() {
     }
 
     LazyColumn {
-      todo.forEach {
+      todo.forEach {todoItem ->
         item {
           Text(
             modifier = Modifier.padding(8.dp),
-            text = "- $it",
+            text = "- $todoItem",
             fontSize = 24.sp
           )
+          GoodsCard(Modifier, item = GoodsItemModel(
+            name = todoItem,
+            stars = 2,
+            price = 3000,
+            imageId = 0,
+            imageURL = "https://i.pinimg.com/originals/0b/6a/b8/0b6ab8df78e80741a6539883b359faad.jpg"
+          ))
         }
       }
     }
