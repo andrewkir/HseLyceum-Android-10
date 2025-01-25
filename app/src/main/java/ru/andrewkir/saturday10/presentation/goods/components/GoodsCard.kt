@@ -29,7 +29,7 @@ fun GoodsCard(
   ElevatedCard {
     GlideImage(
       modifier = Modifier.height(300.dp),
-      model = "https://i.pinimg.com/originals/0b/6a/b8/0b6ab8df78e80741a6539883b359faad.jpg",
+      model = item.imageURL,
       contentScale = ContentScale.Crop,
       contentDescription = null
     )

@@ -21,6 +21,7 @@ import ru.andrewkir.saturday10.presentation.goods.components.GoodsCard
 @Composable
 fun ShowcaseInput() {
   var text by rememberSaveable { mutableStateOf("") }
+  var url by rememberSaveable { mutableStateOf("") }
   val models = remember { mutableStateListOf<GoodsItemModel>() }
 
   Column(Modifier.fillMaxWidth()) {
@@ -35,6 +36,17 @@ fun ShowcaseInput() {
       }
     )
 
+    OutlinedTextField(
+      modifier = Modifier.fillMaxWidth(),
+      value = url,
+      label = {
+        Text("Image URL")
+      },
+      onValueChange = {
+        url = it
+      }
+    )
+
     Button(onClick = {
       models.add(
         GoodsItemModel(
@@ -42,7 +54,7 @@ fun ShowcaseInput() {
           stars = 2,
           price = 3000,
           imageId = 0,
-          imageURL = "https://i.pinimg.com/originals/0b/6a/b8/0b6ab8df78e80741a6539883b359faad.jpg"
+          imageURL = url
         )
       )
       text = ""
