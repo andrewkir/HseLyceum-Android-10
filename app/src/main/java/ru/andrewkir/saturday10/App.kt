@@ -1,8 +1,8 @@
-package ru.andrewkir.saturday10.legacy
+package ru.andrewkir.saturday10
 
 import android.app.Application
 import androidx.room.Room
-import ru.andrewkir.saturday10.legacy.data.db.UsersDatabase
+import ru.andrewkir.saturday10.db.UsersDatabase
 
 
 class App : Application() {
@@ -18,7 +18,7 @@ class App : Application() {
   }
 
   companion object {
-    var db: UsersDatabase? = null
+    private var db: UsersDatabase? = null
     fun getDatabase(): UsersDatabase? {
       return db
     }

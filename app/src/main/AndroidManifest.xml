@@ -6,7 +6,7 @@
 
   <application
       android:windowSoftInputMode="adjustResize"
-      android:name=".legacy.App"
+      android:name=".App"
       android:allowBackup="true"
       android:dataExtractionRules="@xml/data_extraction_rules"
       android:fullBackupContent="@xml/backup_rules"

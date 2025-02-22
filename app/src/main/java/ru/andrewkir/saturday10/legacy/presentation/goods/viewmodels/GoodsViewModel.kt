@@ -10,7 +10,7 @@ import okhttp3.OkHttpClient.Builder
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import ru.andrewkir.saturday10.legacy.App
+import ru.andrewkir.saturday10.App
 import ru.andrewkir.saturday10.legacy.data.api.ApiExample
 import ru.andrewkir.saturday10.legacy.data.models.UserModel
 import ru.andrewkir.saturday10.legacy.presentation.goods.contract.GoodsEffect
@@ -93,13 +93,5 @@ class GoodsViewModel : ViewModel() {
         state.value = state.value.copy(goodsUrl = event.url)
       }
     }
-  }
-
-  // if(isNumeric(event.text)) {
-  //  state.value = ...
-  // }
-
-  fun isNumeric(toCheck: String): Boolean {
-    return toCheck.all { char -> char.isDigit() }
   }
 }

@@ -1,4 +1,4 @@
-package ru.andrewkir.saturday10.legacy.data.db
+package ru.andrewkir.saturday10.db
 
 import androidx.room.Dao
 import androidx.room.Database
