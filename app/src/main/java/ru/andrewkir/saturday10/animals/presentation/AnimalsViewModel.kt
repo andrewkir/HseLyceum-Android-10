@@ -12,10 +12,13 @@ import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import ru.andrewkir.saturday10.App
 import ru.andrewkir.saturday10.animals.presentation.contract.AnimalsUIEffect
+import ru.andrewkir.saturday10.animals.presentation.contract.AnimalsUIEffect.ShowNotification
 import ru.andrewkir.saturday10.animals.presentation.contract.AnimalsUIEvent
 import ru.andrewkir.saturday10.animals.presentation.contract.AnimalsUIEvent.OnAddButtonClicked
 import ru.andrewkir.saturday10.animals.presentation.contract.AnimalsUIEvent.OnNameInputChanged
+import ru.andrewkir.saturday10.animals.presentation.contract.AnimalsUIEvent.OnSurnameInputChanged
 import ru.andrewkir.saturday10.animals.presentation.contract.AnimalsUIState
+import ru.andrewkir.saturday10.animals.presentation.contract.UIUser
 import ru.andrewkir.saturday10.db.User
 import java.util.UUID
 
@@ -36,23 +39,23 @@ class AnimalsViewModel(application: Application) : AndroidViewModel(application)
   init {
     val name = getName() ?: ""
     setState { copy(nameInput = name) }
-    getNames()
+    getUsers()
   }
 
   fun onEvent(event: AnimalsUIEvent) {
     when (event) {
       OnAddButtonClicked -> {
         if (currentState.nameInput.isNotBlank()) {
-          addName(currentState.nameInput)
+          addName(currentState.nameInput, currentState.surnameInput)
           setState {
             copy(
-              names = currentState.names + currentState.nameInput,
+              users = currentState.users + UIUser(currentState.nameInput, currentState.surnameInput),
               nameInput = ""
             )
           }
         } else {
           viewModelScope.launch {
-            _effect.send(AnimalsUIEffect.ShowNotification("Имя не может быть пустым"))
+            _effect.send(ShowNotification("Имя не может быть пустым"))
           }
         }
       }
@@ -60,10 +63,14 @@ class AnimalsViewModel(application: Application) : AndroidViewModel(application)
       is OnNameInputChanged -> {
         setState { copy(nameInput = event.text) }
       }
+
+      is OnSurnameInputChanged -> {
+        setState { copy(surnameInput = event.text) }
+      }
     }
   }
 
-  private fun addName(nameInput: String) {
+  private fun addName(name: String, surname: String) {
     saveName(currentState.nameInput)
 
     val db = App.getDatabase()
@@ -72,18 +79,19 @@ class AnimalsViewModel(application: Application) : AndroidViewModel(application)
       dao.insert(
         User(
           id = UUID.randomUUID().toString(),
-          login = nameInput,
+          login = name,
+          name = surname
         )
       )
     }
   }
 
-  private fun getNames() {
+  private fun getUsers() {
     val db = App.getDatabase()
     db?.let {usersDatabase ->
       val dao = usersDatabase.userDao()
       val users = dao.getAll()
-      setState { copy(names = users.map { it.login }) }
+      setState { copy(users = users.map { UIUser(it.login, it.name) }) }
     }
   }
 

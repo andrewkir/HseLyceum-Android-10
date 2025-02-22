@@ -9,7 +9,10 @@ import androidx.room.PrimaryKey
 import androidx.room.Query
 import androidx.room.RoomDatabase
 
-@Database(entities = [User::class], version = 1)
+@Database(
+  entities = [User::class],
+  version = 1
+)
 abstract class UsersDatabase : RoomDatabase() {
   abstract fun userDao(): UserDao
 }
@@ -19,6 +22,7 @@ data class User(
   @PrimaryKey
   val id: String,
   val login: String,
+  val name: String = "",
 )
 
 @Dao

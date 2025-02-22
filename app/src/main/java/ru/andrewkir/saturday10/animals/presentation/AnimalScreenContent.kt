@@ -57,12 +57,28 @@ fun AnimalScreenContent(
         }
       }
 
+      OutlinedTextField(
+        modifier = Modifier.padding(horizontal = 12.dp),
+        value = uiState.surnameInput,
+        onValueChange = { changedValue ->
+          onEvent(AnimalsUIEvent.OnSurnameInputChanged(changedValue))
+        },
+        placeholder = {
+          Text("Введите имя")
+        }
+      )
+
       LazyColumn {
-        uiState.names.forEach { name ->
+        uiState.users.forEach { user ->
           item {
             Text(
               modifier = Modifier.padding(8.dp),
-              text = name,
+              text = user.name,
+              fontSize = 24.sp
+            )
+            Text(
+              modifier = Modifier.padding(8.dp),
+              text = user.surname,
               fontSize = 24.sp
             )
           }
