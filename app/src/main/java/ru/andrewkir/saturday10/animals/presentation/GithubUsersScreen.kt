@@ -8,11 +8,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlinx.coroutines.flow.collectLatest
-import ru.andrewkir.saturday10.animals.presentation.contract.AnimalsUIEffect.ShowNotification
+import ru.andrewkir.saturday10.animals.presentation.contract.GithubUsersUIEffect.ShowNotification
 
 @Composable
 fun AnimalsScreen() {
-  val viewModel = viewModel<AnimalsViewModel>()
+  val viewModel = viewModel<GithubUsersViewModel>()
   val state by viewModel.state.collectAsState()
 
   val snackbarHostState = remember { SnackbarHostState() }

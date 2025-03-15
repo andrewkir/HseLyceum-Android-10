@@ -1,12 +1,10 @@
 package ru.andrewkir.saturday10.animals.presentation.contract
 
 data class AnimalsUIState(
-  val nameInput: String = "",
-  val surnameInput: String = "",
   val users: List<UIUser> = emptyList(),
+  val isLoading: Boolean = false
 )
 
 data class UIUser(
-  val name: String,
-  val surname: String
+  val login: String
 )
