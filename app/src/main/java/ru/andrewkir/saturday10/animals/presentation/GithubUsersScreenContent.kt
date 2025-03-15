@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material3.CircularProgressIndicator
@@ -17,6 +18,7 @@ import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -32,6 +34,14 @@ fun AnimalScreenContent(
   snackbarHostState: SnackbarHostState,
   onEvent: (GithubUsersUIEvent) -> Unit,
 ) {
+  val listState = rememberLazyListState()
+
+  LaunchedEffect(uiState.users) {
+    if (uiState.users.isNotEmpty()) {
+      listState.scrollToItem(0)
+    }
+  }
+
   Box {
     if (uiState.isLoading) {
       CircularProgressIndicator(
@@ -67,7 +77,7 @@ fun AnimalScreenContent(
         modifier = Modifier
           .padding(paddingValues)
       ) {
-        LazyColumn {
+        LazyColumn(state = listState) {
           items(uiState.users) { user ->
             Text(
               modifier = Modifier
