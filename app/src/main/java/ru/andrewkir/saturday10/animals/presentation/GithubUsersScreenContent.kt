@@ -31,13 +31,13 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
-import ru.andrewkir.saturday10.animals.presentation.contract.AnimalsUIState
 import ru.andrewkir.saturday10.animals.presentation.contract.GithubUsersUIEvent
+import ru.andrewkir.saturday10.animals.presentation.contract.GithubUsersUIState
 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
 fun AnimalScreenContent(
-  uiState: AnimalsUIState,
+  uiState: GithubUsersUIState,
   snackbarHostState: SnackbarHostState,
   onEvent: (GithubUsersUIEvent) -> Unit,
 ) {
@@ -127,7 +127,7 @@ fun AnimalScreenContent(
 @Preview
 private fun AnimalScreenContentPreview() {
   AnimalScreenContent(
-    uiState = AnimalsUIState(),
+    uiState = GithubUsersUIState(),
     snackbarHostState = SnackbarHostState(),
     onEvent = {},
   )

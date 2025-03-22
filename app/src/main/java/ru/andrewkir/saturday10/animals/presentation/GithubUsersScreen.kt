@@ -15,14 +15,14 @@ import ru.andrewkir.saturday10.animals.presentation.contract.GithubUsersUIEffect
 @Composable
 fun AnimalsScreen() {
   val viewModel = viewModel<GithubUsersViewModel>()
-  val state by viewModel.state.collectAsState()
+  val state by viewModel.uiState.collectAsState()
 
   val snackbarHostState = remember { SnackbarHostState() }
   val uriHandler = LocalUriHandler.current
 
   LaunchedEffect(viewModel.effect) {
     viewModel.effect.collectLatest { effect ->
-      when(effect){
+      when (effect) {
         is ShowNotification -> {
           snackbarHostState.showSnackbar(effect.message)
         }
@@ -37,6 +37,6 @@ fun AnimalsScreen() {
   AnimalScreenContent(
     uiState = state,
     snackbarHostState = snackbarHostState,
-    onEvent = viewModel::onEvent,
+    onEvent = viewModel::setEvent,
   )
 }
