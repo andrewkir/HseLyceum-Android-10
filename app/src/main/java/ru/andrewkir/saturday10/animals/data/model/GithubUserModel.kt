@@ -9,4 +9,6 @@ data class GithubUserModel(
   val login: String,
   @SerializedName("avatar_url")
   val avatarUrl: String,
+  @SerializedName("html_url")
+  val url: String
 )

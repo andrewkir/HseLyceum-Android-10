@@ -6,5 +6,8 @@ data class AnimalsUIState(
 )
 
 data class UIUser(
-  val login: String
+  val id: String,
+  val login: String,
+  val avatarUrl:String,
+  val url: String
 )

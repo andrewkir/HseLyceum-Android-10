@@ -15,6 +15,7 @@ import ru.andrewkir.saturday10.animals.presentation.contract.AnimalsUIState
 import ru.andrewkir.saturday10.animals.presentation.contract.GithubUsersUIEffect
 import ru.andrewkir.saturday10.animals.presentation.contract.GithubUsersUIEvent
 import ru.andrewkir.saturday10.animals.presentation.contract.GithubUsersUIEvent.OnRefreshClick
+import ru.andrewkir.saturday10.animals.presentation.contract.GithubUsersUIEvent.OnUserClick
 import ru.andrewkir.saturday10.animals.presentation.contract.UIUser
 
 class GithubUsersViewModel(application: Application) : AndroidViewModel(application) {
@@ -42,6 +43,12 @@ class GithubUsersViewModel(application: Application) : AndroidViewModel(applicat
       OnRefreshClick -> {
         loadUsers()
       }
+
+      is OnUserClick -> {
+        viewModelScope.launch {
+          _effect.send(GithubUsersUIEffect.OpenUrl(event.url))
+        }
+      }
     }
   }
 
@@ -50,7 +57,14 @@ class GithubUsersViewModel(application: Application) : AndroidViewModel(applicat
       setState { copy(isLoading = true) }
       repo.getUsers()
         .onSuccess { usersResult ->
-          val users = usersResult.map { user -> UIUser(login = user.login) }
+          val users = usersResult.map { user ->
+            UIUser(
+              login = user.login,
+              url = user.url,
+              id = user.id.toString(),
+              avatarUrl = user.avatarUrl
+            )
+          }
           setState { copy(users = users) }
         }
         .onFailure {
