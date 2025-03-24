@@ -1,4 +1,4 @@
-package ru.andrewkir.saturday10.animals.data.model
+package ru.andrewkir.saturday10.features.github.data.model
 
 import com.google.gson.annotations.SerializedName
 

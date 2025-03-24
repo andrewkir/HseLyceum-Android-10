@@ -1,8 +1,8 @@
-package ru.andrewkir.saturday10.animals.data
+package ru.andrewkir.saturday10.features.github.data
 
 import retrofit2.http.GET
 import retrofit2.http.Query
-import ru.andrewkir.saturday10.animals.data.model.GithubUserModel
+import ru.andrewkir.saturday10.features.github.data.model.GithubUserModel
 
 
 interface GithubApi {

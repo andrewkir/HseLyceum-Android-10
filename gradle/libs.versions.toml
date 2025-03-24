@@ -17,7 +17,7 @@ composeBom = "2024.04.01"
 lifecycleViewmodelCompose = "2.8.7"
 loggingInterceptor = "4.12.0"
 retrofit = "2.10.0"
-kspDestinations = "1.11.7"
+kspDestinations = "1.11.9"
 composeDestinations = "1.11.7"
 room_version = "2.6.1"
 

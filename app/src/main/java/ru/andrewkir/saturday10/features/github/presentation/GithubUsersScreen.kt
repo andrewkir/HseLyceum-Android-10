@@ -1,4 +1,4 @@
-package ru.andrewkir.saturday10.animals.presentation
+package ru.andrewkir.saturday10.features.github.presentation
 
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
@@ -8,12 +8,18 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import kotlinx.coroutines.flow.collectLatest
-import ru.andrewkir.saturday10.animals.presentation.contract.GithubUsersUIEffect.OpenUrl
-import ru.andrewkir.saturday10.animals.presentation.contract.GithubUsersUIEffect.ShowNotification
+import ru.andrewkir.saturday10.features.destinations.DetailsScreenDestination
+import ru.andrewkir.saturday10.features.github.presentation.contract.GithubUsersUIEffect.OpenUrl
+import ru.andrewkir.saturday10.features.github.presentation.contract.GithubUsersUIEffect.ShowNotification
 
 @Composable
-fun AnimalsScreen() {
+@Destination(start = true)
+fun GithubScreen(
+  navigator: DestinationsNavigator
+) {
   val viewModel = viewModel<GithubUsersViewModel>()
   val state by viewModel.uiState.collectAsState()
 
@@ -28,13 +34,13 @@ fun AnimalsScreen() {
         }
 
         is OpenUrl -> {
-          uriHandler.openUri(effect.url)
+          navigator.navigate(DetailsScreenDestination(effect.url))
         }
       }
     }
   }
 
-  AnimalScreenContent(
+  GithubScreenContent(
     uiState = state,
     snackbarHostState = snackbarHostState,
     onEvent = viewModel::setEvent,

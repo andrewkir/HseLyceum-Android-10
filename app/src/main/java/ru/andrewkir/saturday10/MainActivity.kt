@@ -4,8 +4,9 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import ru.andrewkir.saturday10.animals.presentation.AnimalsScreen
-import ru.andrewkir.saturday10.legacy.presentation.goods.theme.Saturday10Theme
+import com.ramcosta.composedestinations.DestinationsNavHost
+import ru.andrewkir.saturday10.features.NavGraphs
+import ru.andrewkir.saturday10.theme.Saturday10Theme
 
 class MainActivity : ComponentActivity() {
 
@@ -15,7 +16,7 @@ class MainActivity : ComponentActivity() {
     enableEdgeToEdge()
     setContent {
       Saturday10Theme {
-        AnimalsScreen()
+        DestinationsNavHost(navGraph = NavGraphs.root)
       }
     }
   }

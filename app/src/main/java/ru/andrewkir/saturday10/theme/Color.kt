@@ -1,4 +1,4 @@
-package ru.andrewkir.saturday10.legacy.presentation.goods.theme
+package ru.andrewkir.saturday10.theme
 
 import androidx.compose.ui.graphics.Color
 

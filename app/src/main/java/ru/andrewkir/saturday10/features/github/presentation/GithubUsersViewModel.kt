@@ -1,18 +1,17 @@
-package ru.andrewkir.saturday10.animals.presentation
+package ru.andrewkir.saturday10.features.github.presentation
 
-import android.app.Application
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
-import ru.andrewkir.saturday10.animals.data.GithubRepository
-import ru.andrewkir.saturday10.animals.presentation.contract.GithubUsersUIEffect
-import ru.andrewkir.saturday10.animals.presentation.contract.GithubUsersUIEvent
-import ru.andrewkir.saturday10.animals.presentation.contract.GithubUsersUIEvent.OnRefreshClick
-import ru.andrewkir.saturday10.animals.presentation.contract.GithubUsersUIEvent.OnUserClick
-import ru.andrewkir.saturday10.animals.presentation.contract.GithubUsersUIState
-import ru.andrewkir.saturday10.animals.presentation.contract.UIUser
 import ru.andrewkir.saturday10.core.BaseViewModel
+import ru.andrewkir.saturday10.features.github.data.GithubRepository
+import ru.andrewkir.saturday10.features.github.presentation.contract.GithubUsersUIEffect
+import ru.andrewkir.saturday10.features.github.presentation.contract.GithubUsersUIEvent
+import ru.andrewkir.saturday10.features.github.presentation.contract.GithubUsersUIEvent.OnRefreshClick
+import ru.andrewkir.saturday10.features.github.presentation.contract.GithubUsersUIEvent.OnUserClick
+import ru.andrewkir.saturday10.features.github.presentation.contract.GithubUsersUIState
+import ru.andrewkir.saturday10.features.github.presentation.contract.UIUser
 
-class GithubUsersViewModel(application: Application) : BaseViewModel<GithubUsersUIEvent, GithubUsersUIState, GithubUsersUIEffect>(
+class GithubUsersViewModel : BaseViewModel<GithubUsersUIEvent, GithubUsersUIState, GithubUsersUIEffect>(
   GithubUsersUIState()
 ) {
   private val repo = GithubRepository()

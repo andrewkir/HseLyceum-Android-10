@@ -1,10 +1,10 @@
-package ru.andrewkir.saturday10.animals.data
+package ru.andrewkir.saturday10.features.github.data
 
 import okhttp3.OkHttpClient.Builder
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import ru.andrewkir.saturday10.animals.data.model.GithubUserModel
+import ru.andrewkir.saturday10.features.github.data.model.GithubUserModel
 import kotlin.random.Random
 
 class GithubRepository {

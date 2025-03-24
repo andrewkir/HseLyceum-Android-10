@@ -1,4 +1,4 @@
-package ru.andrewkir.saturday10.animals.presentation.contract
+package ru.andrewkir.saturday10.features.github.presentation.contract
 
 import ru.andrewkir.saturday10.core.UIEvent
 
