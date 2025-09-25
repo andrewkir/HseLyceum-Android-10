@@ -25,6 +25,7 @@ import ru.andrewkir.saturday10.theme.Saturday10Theme
 fun AstroScreenContent(astronauts: List<AstronautUI>) {
     Column(
         modifier = Modifier
+            .padding(top = 32.dp)
             .fillMaxSize()
             .background(Color.White)
     ) {
