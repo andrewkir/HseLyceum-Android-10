@@ -16,7 +16,7 @@ import ru.andrewkir.saturday10.features.github.presentation.contract.GithubUsers
 import ru.andrewkir.saturday10.features.github.presentation.contract.GithubUsersUIEffect.ShowNotification
 
 @Composable
-@Destination(start = true)
+@Destination
 fun GithubScreen(
   navigator: DestinationsNavigator
 ) {

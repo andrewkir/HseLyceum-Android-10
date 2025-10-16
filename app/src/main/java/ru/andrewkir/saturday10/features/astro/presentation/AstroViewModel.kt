@@ -42,6 +42,10 @@ class AstroViewModel : BaseViewModel<AstroUiEvent, AstroUiState, AstroUiEffect>(
     }
 
     override fun handleEvent(event: AstroUiEvent) {
-
+        when (event) {
+            is AstroUiEvent.OnCardClicked -> {
+                setEffect(AstroUiEffect.NavigateToDetails(event.name))
+            }
+        }
     }
 }

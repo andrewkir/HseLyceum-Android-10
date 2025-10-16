@@ -17,12 +17,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import ru.andrewkir.saturday10.features.astro.presentation.contract.AstroUiEvent
 import ru.andrewkir.saturday10.features.astro.presentation.model.AstronautUI
 import ru.andrewkir.saturday10.theme.Saturday10Theme
 
 
 @Composable
-fun AstroScreenContent(astronauts: List<AstronautUI>) {
+fun AstroScreenContent(
+    astronauts: List<AstronautUI>,
+    onEvent: (AstroUiEvent) -> Unit
+) {
     Column(
         modifier = Modifier
             .padding(top = 32.dp)
@@ -38,18 +42,24 @@ fun AstroScreenContent(astronauts: List<AstronautUI>) {
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             items(astronauts) { astronaut ->
-                AstronautItem(astronaut)
+                AstronautItem(astronaut, onEvent)
             }
         }
     }
 }
 
 @Composable
-private fun AstronautItem(astronaut: AstronautUI) {
+private fun AstronautItem(
+    astronaut: AstronautUI,
+    onEvent: (AstroUiEvent) -> Unit,
+) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(8.dp)
+            .padding(8.dp),
+        onClick = {
+            onEvent(AstroUiEvent.OnCardClicked(astronaut.name))
+        }
     ) {
         Text(modifier = Modifier.padding(8.dp), text = astronaut.name)
         Spacer(modifier = Modifier.height(8.dp))
@@ -71,7 +81,8 @@ private fun AstroScreenContentPreview() {
                     craft = "ISS",
                     name = "Nikolai Chub"
                 ),
-            )
+            ),
+            {}
         )
     }
 }
