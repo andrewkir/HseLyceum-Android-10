@@ -19,6 +19,8 @@ import java.util.concurrent.Executors
 
 class MainActivity : ComponentActivity() {
 
+
+    //внутреннее использование камеры
     private lateinit var cameraExecutor: ExecutorService
     var shouldShowCamera: MutableState<Boolean> = mutableStateOf(false)
 
@@ -48,7 +50,7 @@ class MainActivity : ComponentActivity() {
 //                val navController = rememberNavController()
 
                 Column {
-                    CameraPreviewScreen(cameraExecutor)
+                    ImagePicker()
                 }
 //
 //                Scaffold(
