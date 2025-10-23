@@ -20,9 +20,14 @@ retrofit = "2.10.0"
 kspDestinations = "1.11.9"
 composeDestinations = "1.11.7"
 room_version = "2.6.1"
+cameraCamera2 = "1.5.1"
+cameraLifecycle = "1.5.1"
 
 
 [libraries]
+androidx-camera-lifecycle = { module = "androidx.camera:camera-lifecycle", version.ref = "cameraLifecycle" }
+androidx-camera-camera2 = { module = "androidx.camera:camera-camera2", version.ref = "cameraCamera2" }
+androidx-camera-view = { module = "androidx.camera:camera-view", version.ref = "cameraCamera2" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycleViewmodelCompose" }
 compose = { module = "com.github.bumptech.glide:compose", version.ref = "compose" }

@@ -7,12 +7,12 @@ plugins {
 
 android {
   namespace = "ru.andrewkir.saturday10"
-  compileSdk = 34
+  compileSdk = 35
 
   defaultConfig {
     applicationId = "ru.andrewkir.saturday10"
     minSdk = 24
-    targetSdk = 34
+    targetSdk = 35
     versionCode = 1
     versionName = "1.0"
 
@@ -66,6 +66,9 @@ dependencies {
   implementation(libs.gson)
   implementation(libs.converter.gson)
   implementation(libs.logging.interceptor)
+  implementation(libs.androidx.camera.camera2)
+  implementation(libs.androidx.camera.lifecycle)
+  implementation(libs.androidx.camera.view)
 
   implementation(libs.coreDestinations)
   ksp(libs.composeDestinationsKSP)
