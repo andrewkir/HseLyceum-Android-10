@@ -8,11 +8,12 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.ramcosta.composedestinations.DestinationsNavHost
+import ru.andrewkir.saturday10.features.NavGraphs
 import ru.andrewkir.saturday10.theme.Saturday10Theme
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
@@ -45,13 +46,13 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             Saturday10Theme {
-//                DestinationsNavHost(navGraph = NavGraphs.root)
+                DestinationsNavHost(navGraph = NavGraphs.root)
 //
 //                val navController = rememberNavController()
-
-                Column {
-                    ImagePicker()
-                }
+//
+//                Column {
+//                    ImagePicker()
+//                }
 //
 //                Scaffold(
 //                    modifier = Modifier.fillMaxSize(),

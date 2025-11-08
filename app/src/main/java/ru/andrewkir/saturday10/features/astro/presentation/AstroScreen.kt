@@ -12,7 +12,7 @@ import ru.andrewkir.saturday10.features.astro.presentation.contract.AstroUiEffec
 import ru.andrewkir.saturday10.features.destinations.AstroDetailsDestination
 
 @Composable
-@Destination(start = true)
+@Destination
 fun AstroScreen(
     navigator: DestinationsNavigator,
 ) {
