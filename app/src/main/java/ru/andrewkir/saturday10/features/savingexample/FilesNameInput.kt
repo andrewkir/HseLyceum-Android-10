@@ -23,7 +23,7 @@ import java.io.File
 
 
 @Composable
-@Destination(start = true)
+@Destination
 fun FilesNameInput() {
     var text by remember { mutableStateOf("") }
     val context = LocalContext.current

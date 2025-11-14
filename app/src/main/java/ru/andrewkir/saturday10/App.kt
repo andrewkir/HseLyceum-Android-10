@@ -2,7 +2,7 @@ package ru.andrewkir.saturday10
 
 import android.app.Application
 import androidx.room.Room
-import ru.andrewkir.saturday10.db.UsersDatabase
+import ru.andrewkir.saturday10.db.GoodsDatabase
 
 
 class App : Application() {
@@ -10,16 +10,16 @@ class App : Application() {
     super.onCreate()
     db = Room.databaseBuilder(
       applicationContext,
-      UsersDatabase::class.java,
-      "user-db"
+      GoodsDatabase::class.java,
+      "goods-db"
     )
       .allowMainThreadQueries()
       .build()
   }
 
   companion object {
-    private var db: UsersDatabase? = null
-    fun getDatabase(): UsersDatabase? {
+    private var db: GoodsDatabase? = null
+    fun getDatabase(): GoodsDatabase? {
       return db
     }
   }
