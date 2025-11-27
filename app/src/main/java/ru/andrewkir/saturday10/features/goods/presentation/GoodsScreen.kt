@@ -7,7 +7,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.ramcosta.composedestinations.annotation.Destination
 
 @Composable
-@Destination(start = true)
+@Destination
 fun GoodsScreen() {
     val viewModel = viewModel<GoodsViewModel>()
     val uiState by viewModel.uiState.collectAsState()

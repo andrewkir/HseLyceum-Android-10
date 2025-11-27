@@ -5,4 +5,6 @@ plugins {
   alias(libs.plugins.kotlin.kapt) apply false
   alias(libs.plugins.kotlinAndroidKsp) apply false
   id("org.jetbrains.kotlin.plugin.serialization") version "1.7.10" apply false
+  id("com.google.dagger.hilt.android") version "2.57.2" apply false
+  alias(libs.plugins.compose.compiler) apply false
 }

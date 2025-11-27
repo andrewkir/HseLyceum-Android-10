@@ -3,6 +3,8 @@ plugins {
   alias(libs.plugins.kotlin.android)
   alias(libs.plugins.kotlinAndroidKsp)
   id("org.jetbrains.kotlin.plugin.serialization")
+  id("com.google.dagger.hilt.android")
+  alias(libs.plugins.compose.compiler)
 }
 
 android {
@@ -76,6 +78,11 @@ dependencies {
   implementation(libs.kotlinx.serialization.json)
   implementation(libs.room)
   ksp(libs.roomKsp)
+
+  implementation(libs.hilt.android)
+  ksp(libs.hilt.android.compiler)
+  implementation(libs.androidx.hilt.navigation.fragment)
+  implementation(libs.androidx.hilt.navigation.compose)
 
   testImplementation(libs.junit)
   androidTestImplementation(libs.androidx.junit)

@@ -12,7 +12,8 @@ import androidx.room.RoomDatabase
 
 @Database(
     entities = [Good::class],
-    version = 1
+    version = 1,
+    exportSchema = false
 )
 abstract class GoodsDatabase : RoomDatabase() {
     abstract fun goodsDao(): GoodDao

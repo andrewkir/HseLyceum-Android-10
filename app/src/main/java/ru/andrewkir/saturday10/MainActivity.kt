@@ -13,11 +13,13 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.ramcosta.composedestinations.DestinationsNavHost
+import dagger.hilt.android.AndroidEntryPoint
 import ru.andrewkir.saturday10.features.NavGraphs
 import ru.andrewkir.saturday10.theme.Saturday10Theme
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
 

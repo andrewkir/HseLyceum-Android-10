@@ -4,26 +4,24 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import com.ramcosta.composedestinations.annotation.Destination
-import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import kotlinx.coroutines.flow.collectLatest
 import ru.andrewkir.saturday10.features.astro.presentation.contract.AstroUiEffect
-import ru.andrewkir.saturday10.features.destinations.AstroDetailsDestination
 
 @Composable
-@Destination
+@Destination(start = true)
 fun AstroScreen(
-    navigator: DestinationsNavigator,
+//    navigator: DestinationsNavigator,
 ) {
-    val viewModel = viewModel<AstroViewModel>()
+    val viewModel: AstroViewModel = hiltViewModel()
     val state by viewModel.uiState.collectAsState()
 
     LaunchedEffect(viewModel.effect) {
         viewModel.effect.collectLatest { effect ->
             when (effect) {
                 is AstroUiEffect.NavigateToDetails -> {
-                    navigator.navigate(AstroDetailsDestination(effect.name))
+//                    navigator.navigate(AstroDetailsDestination(effect.name))
                 }
             }
         }

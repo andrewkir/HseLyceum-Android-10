@@ -1,6 +1,7 @@
 package ru.andrewkir.saturday10.features.astro.presentation
 
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import ru.andrewkir.saturday10.core.BaseViewModel
 import ru.andrewkir.saturday10.features.astro.data.AstroRepository
@@ -8,12 +9,14 @@ import ru.andrewkir.saturday10.features.astro.presentation.contract.AstroUiEffec
 import ru.andrewkir.saturday10.features.astro.presentation.contract.AstroUiEvent
 import ru.andrewkir.saturday10.features.astro.presentation.contract.AstroUiState
 import ru.andrewkir.saturday10.features.astro.presentation.model.AstronautUI
+import javax.inject.Inject
 
-class AstroViewModel : BaseViewModel<AstroUiEvent, AstroUiState, AstroUiEffect>(
+@HiltViewModel
+class AstroViewModel @Inject constructor(
+    val repository: AstroRepository
+) : BaseViewModel<AstroUiEvent, AstroUiState, AstroUiEffect>(
     AstroUiState(emptyList())
 ) {
-
-    val repository: AstroRepository = AstroRepository()
 
     init {
         loadUsers()
