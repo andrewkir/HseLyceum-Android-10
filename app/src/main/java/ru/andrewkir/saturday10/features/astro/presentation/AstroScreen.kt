@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.collectLatest
 import ru.andrewkir.saturday10.features.astro.presentation.contract.AstroUiEffect
 
 @Composable
-@Destination(start = true)
+@Destination
 fun AstroScreen(
 //    navigator: DestinationsNavigator,
 ) {

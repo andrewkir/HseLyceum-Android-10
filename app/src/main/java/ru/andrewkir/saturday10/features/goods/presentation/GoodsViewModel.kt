@@ -1,20 +1,21 @@
 package ru.andrewkir.saturday10.features.goods.presentation
 
-import ru.andrewkir.saturday10.App
+import dagger.hilt.android.lifecycle.HiltViewModel
 import ru.andrewkir.saturday10.core.BaseViewModel
 import ru.andrewkir.saturday10.db.Good
 import ru.andrewkir.saturday10.features.goods.data.GoodsRepository
 import ru.andrewkir.saturday10.features.goods.presentation.contract.GoodsUiEffect
 import ru.andrewkir.saturday10.features.goods.presentation.contract.GoodsUiEvent
 import ru.andrewkir.saturday10.features.goods.presentation.contract.GoodsUiState
+import javax.inject.Inject
 import kotlin.random.Random
 
-class GoodsViewModel : BaseViewModel<GoodsUiEvent, GoodsUiState, GoodsUiEffect>(
+@HiltViewModel
+class GoodsViewModel @Inject constructor(
+    val repository: GoodsRepository
+) : BaseViewModel<GoodsUiEvent, GoodsUiState, GoodsUiEffect>(
     initialState = GoodsUiState()
 ) {
-
-    val db = App.getDatabase()
-    val repository = GoodsRepository(db?.goodsDao())
 
     init {
         getAllGoods()
@@ -44,6 +45,7 @@ class GoodsViewModel : BaseViewModel<GoodsUiEvent, GoodsUiState, GoodsUiEffect>(
         )
 
         setState { copy(nameText = "", descriptionText = "") }
+        getAllGoods()
     }
 
     private fun getAllGoods() {
